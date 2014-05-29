@@ -29,5 +29,4 @@ That's all!
 
 
 
-  [1]: http://fontawesome.io/%20FontAwesome
-  [2]: http://glyphicons.com/
+  [1]: http://fontawesome.io/

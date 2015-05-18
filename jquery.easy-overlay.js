@@ -50,10 +50,3 @@
 		
    }; 
 })(jQuery);
-
-(function( $ ){
-	$.overlayout = function() {
-		if( $("#jqueryEasyOverlayDiv").length ) $("#jqueryEasyOverlayDiv").fadeOut();
-		
-   }; 
-})(jQuery);

@@ -41,12 +41,14 @@
 		});
 		
 		$("#jqueryEasyOverlayDiv").fadeIn();
+
+		return this;
    	}; 
 })(jQuery);
 
 (function( $ ){
 	$.fn.overlayout = function() {
 		if( $("#jqueryEasyOverlayDiv").length ) $("#jqueryEasyOverlayDiv").fadeOut();
-		
+		return this;
    }; 
 })(jQuery);

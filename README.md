@@ -9,6 +9,7 @@ Easy & Simple jQuery plugin for overlay an existing element with css & [FontAwes
 Getting Started
 ---------
 
+Make sure you have FontAwesome  
 Include the script on your page
 
 ```html

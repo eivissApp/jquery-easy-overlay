@@ -1,4 +1,4 @@
-	JQuery Easy Overlay v1.0.0
+	JQuery Easy Overlay v2.0.0
 
 	Copyright 2015 Nazzareno Mazzitello and Contributors
 

@@ -1,3 +1,4 @@
+	/*
 	JQuery Easy Overlay v2.0.0
 
 	Copyright 2015 Nazzareno Mazzitello and Contributors
@@ -16,6 +17,7 @@
 
 	You should have received a copy of the GNU Lesser General Public License
 	along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
+	*/
 (function( $ ){
 	$.fn.easyOverlay = function(action) {
 		switch (action) {

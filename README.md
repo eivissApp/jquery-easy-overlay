@@ -5,11 +5,14 @@ Easy & Simple jQuery plugin for overlay an existing element with css & [FontAwes
 
 ----------
 
+Requirements
+---------
+	- JQuery
+	- FontAwesome
 
 Getting Started
 ---------
 
-Make sure you have FontAwesome  
 Include the script on your page
 
 ```html
@@ -18,16 +21,12 @@ Include the script on your page
 
 And, for overlay an existing element
 ```javascript
-$("#elementDesired").overlay();
+$("#elementDesired").easyOverlay("start");
 ```
 
 For remove the overlay layer
 ```javascript
-$.overlayout();
+$("#elementDesired").easyOverlay("stop");
 ```
 
 That's all!
-
-
-
-  [1]: http://fontawesome.io/

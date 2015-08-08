@@ -1,23 +1,23 @@
-	/*
-	JQuery Easy Overlay v2.0.0
+/*
+JQuery Easy Overlay v2.0.0
 
-	Copyright 2015 Nazzareno Mazzitello and Contributors
+Copyright 2015 Nazzareno Mazzitello, Andrés Cabrera and Contributors
 
-	This file is part of jQuery Easy Overlay.
+This file is part of jQuery Easy Overlay.
 
-	jQuery Easy Overlay is free software: you can redistribute it and/or modify
-	it under the terms of the GNU Lesser General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+jQuery Easy Overlay is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-	jQuery Easy Overlay is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU Lesser General Public License for more details.
+jQuery Easy Overlay is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
 
-	You should have received a copy of the GNU Lesser General Public License
-	along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
-	*/
+You should have received a copy of the GNU Lesser General Public License
+along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
+*/
 (function( $ ){
 	$.fn.easyOverlay = function(action) {
 		switch (action) {

@@ -1,7 +1,7 @@
 jQuery Easy Overlay Plugin
 =====================
 
-Easy & Simple jQuery plugin for overlay an existing element with css & [FontAwesome][1]
+Easy & Simple jQuery plugin for overlay an existing element with Css & FontAwesome
 
 ----------
 

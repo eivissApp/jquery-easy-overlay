@@ -27,6 +27,8 @@ $("#elementDesired").easyOverlay("start");
 For remove the overlay layer
 ```javascript
 $("#elementDesired").easyOverlay("stop");
+Or
+$.easyOverlay("stop");
 ```
 Or
 ```javascript

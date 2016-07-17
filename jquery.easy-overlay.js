@@ -19,7 +19,16 @@ You should have received a copy of the GNU Lesser General Public License
 along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 */
 (function( $ ){
-	$.fn.easyOverlay = function(action) {
+    $.fn.easyOverlay = function (action, options) {
+
+        var defaults = {
+            zindex: "99999",
+            spin: true,
+            speed: 400
+        };
+
+        var _options = $.extend({}, defaults, options || {});
+
 		switch (action) {
 			case 'start':
 				{
@@ -31,17 +40,24 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 					var overlayZIndex;
 					var targetZIndex = $this.css('z-index');
 					if (targetZIndex == "auto")
-						overlayZIndex = "99999";
+					    overlayZIndex = _options.zindex;
 					else 
 						overlayZIndex = parseFloat(targetZIndex) + 1;
 					
 					// Putting and Styling OVERLAY DIV if doesn't exist
 					if( !$("#jqueryEasyOverlayDiv").length ) {
-						var innerDiv = document.createElement('div');
-						$(innerDiv)
-							.css({ position: "absolute"})
+					    var innerDiv = document.createElement('div');
+					    if (_options.spin) {
+					        $(innerDiv)
+							.css({ position: "absolute" })
 							.attr("id", "jqueryOverlayLoad")
-							.html("<i class='fa fa-spin fa-spinner fa-2x'></i>&nbsp;");
+					        .html("<i class='fa fa-spin fa-spinner fa-2x'></i>&nbsp;");
+					    } else {
+					        $(innerDiv)
+							.css({ position: "absolute" })
+							.attr("id", "jqueryOverlayLoad");
+					    }
+						
 						
 						var containerDiv = document.createElement('div');	
 						$(containerDiv)
@@ -76,12 +92,12 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 					});
 					
 					// Show OVERLAY DIV
-					$("#jqueryEasyOverlayDiv").fadeIn();
+					$("#jqueryEasyOverlayDiv").fadeIn(_options.speed);
 				}
 				break;
 			case 'stop':
 				{
-					if( $("#jqueryEasyOverlayDiv").length ) $("#jqueryEasyOverlayDiv").fadeOut();
+					if( $("#jqueryEasyOverlayDiv").length ) $("#jqueryEasyOverlayDiv").fadeOut(_options.speed);
 				}
 				break;
 		}

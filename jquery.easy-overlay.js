@@ -19,25 +19,42 @@ You should have received a copy of the GNU Lesser General Public License
 along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 */
 (function( $ ){
-	$.fn.easyOverlay = function(action) {
+	$.fn.easyOverlay = function(action, options) {
 		
+		var defaults = {
+            zindex: "99999",
+            spin: true,
+            speed: 400
+        };
+
+        var _options = $.extend({}, defaults, options || {});
 		var overlayZIndex;
 		
 		function init(target) {
+			if(target.length <= 0) return;
+			
 			// Calculating OVERLAY DIV z-index
+			var overlayZIndex;
 			var targetZIndex = target.css('z-index');
 			if (targetZIndex == "auto")
-				overlayZIndex = "99999";
+				overlayZIndex = _options.zindex;
 			else 
 				overlayZIndex = parseFloat(targetZIndex) + 1;
 			
 			// Putting and Styling OVERLAY DIV if doesn't exist
 			if( !$("#jqueryEasyOverlayDiv").length ) {
 				var innerDiv = document.createElement('div');
-				$(innerDiv)
-					.css({ position: "absolute"})
+				if (_options.spin) {
+					$(innerDiv)
+					.css({ position: "absolute" })
 					.attr("id", "jqueryOverlayLoad")
 					.html("<i class='fa fa-spin fa-spinner fa-2x'></i>&nbsp;");
+				} else {
+					$(innerDiv)
+					.css({ position: "absolute" })
+					.attr("id", "jqueryOverlayLoad");
+				}
+				
 				
 				var containerDiv = document.createElement('div');	
 				$(containerDiv)
@@ -51,6 +68,7 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 				
 				$("body").append(containerDiv);
 			}
+
 			// Calculating Spinner Div positioning
 			var topOverlay = ((target.height()/2)-12);
 			var leftOverlay = ((target.width()/2)-12);
@@ -59,25 +77,29 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 				top  : topOverlay,
 				left : leftOverlay
 			});
-			
-			target.data('jquery.easy-overlay', true);
 		}
 		
 		function start(target) {
-			// Restoring some CSS of OVERLAY DIV after every 'stop' because jquery.fadeOut method take off it
+			// Restoring some CSS of OVERLAY DIV after every 'overlayout' because jquery.fadeOut method take off it
 			$("#jqueryEasyOverlayDiv").css({
 				opacity : 0.5,
 				zIndex  : overlayZIndex,
-				top     :  target.offset().top,
+				top     : target.offset().top,
 				left    : target.offset().left,
 				width   : target.outerWidth(),
 				height  : target.outerHeight()
 			});
 			
 			// Show OVERLAY DIV
-			$("#jqueryEasyOverlayDiv").fadeIn();
+			$("#jqueryEasyOverlayDiv").fadeIn(_options.speed);
 		}
-		
+
+		function stop(target) {
+			if( $("#jqueryEasyOverlayDiv").length ) {
+				$("#jqueryEasyOverlayDiv").fadeOut(_options.speed).remove();
+			}
+		}
+
 		switch (action) {
 			case 'start':
 				{
@@ -89,11 +111,14 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 				break;
 			case 'stop':
 				{
-					if( $("#jqueryEasyOverlayDiv").length ) $("#jqueryEasyOverlayDiv").fadeOut();
+					if (this.length > 0) {
+						stop(this);
+					}
 				}
 				break;
 		}
     	
 		return this;
-   	}; 
+			
+	}
 })(jQuery);

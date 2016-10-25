@@ -24,7 +24,7 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 		var defaults = {
             zindex: "99999",
             spin: true,
-            speed: 400
+            delay: 400
         };
 
         var _options = $.extend({}, defaults, options || {});
@@ -91,12 +91,12 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 			});
 			
 			// Show OVERLAY DIV
-			$("#jqueryEasyOverlayDiv").fadeIn(_options.speed);
+			$("#jqueryEasyOverlayDiv").fadeIn(_options.delay);
 		}
 
 		function stop(target) {
 			if( $("#jqueryEasyOverlayDiv").length ) {
-				$("#jqueryEasyOverlayDiv").fadeOut(_options.speed).remove();
+				$("#jqueryEasyOverlayDiv").fadeOut(_options.delay, function(){this.remove()});
 			}
 		}
 

@@ -42,8 +42,8 @@ To customize some aspects of the plugin behaviour, you can pass an object as a s
 $("#elementDesired").easyOverlay("start", {
 	zindex: 60000, //The default z-index of the overlay is 99999
 	spin: false,   //Do not show a spinning icon on the overlay
-	speed: 200     //Time in miliseconds for the fadeIn or fadeOut effects of the overlay.
+	delay: 200     //Time in miliseconds for the fadeIn or fadeOut effects of the overlay.
 });
 ```
 
-**Note**: When using the `stop` option, actually only the `speed` parameter will be relevant.
+**Note**: When using the `stop` option, actually only the `delay` parameter will be relevant.

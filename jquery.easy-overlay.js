@@ -24,7 +24,7 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 		var defaults = {
             zindex: "99999",
             spin: true,
-            delay: 400
+            delay: 400,
         };
 
         var _options = $.extend({}, defaults, options || {});
@@ -46,7 +46,11 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 			// Putting and Styling OVERLAY DIV if doesn't exist
 			if( !$("#jqueryEasyOverlayDiv"+easyOverlayIndex).length ) {
 				var innerDiv = document.createElement('div');
-				if (_options.spin) {
+				if (typeof _options.spin == 'object') {
+					$(innerDiv)
+					.css({ position: "absolute", "background-image": "url(" + _options.spin.url + ")", "background-size": "100%", width: _options.spin.width, height: _options.spin.height })
+					.attr("id", "jqueryOverlayLoad"+easyOverlayIndex);
+				} else if (_options.spin) {
 					$(innerDiv)
 					.css({ position: "absolute" })
 					.attr("id", "jqueryOverlayLoad"+easyOverlayIndex)

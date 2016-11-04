@@ -24,13 +24,15 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 		var defaults = {
             zindex: "99999",
             spin: true,
-            speed: 400
+            delay: 400,
         };
 
         var _options = $.extend({}, defaults, options || {});
 		var overlayZIndex;
+		$.fn.easyOverlay.indexCounter++;
 		
 		function init(target) {
+			var easyOverlayIndex = $.fn.easyOverlay.indexCounter;
 			if(target.length <= 0) return;
 			
 			// Calculating OVERLAY DIV z-index
@@ -42,17 +44,21 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 				overlayZIndex = parseFloat(targetZIndex) + 1;
 			
 			// Putting and Styling OVERLAY DIV if doesn't exist
-			if( !$("#jqueryEasyOverlayDiv").length ) {
+			if( !$("#jqueryEasyOverlayDiv"+easyOverlayIndex).length ) {
 				var innerDiv = document.createElement('div');
-				if (_options.spin) {
+				if (typeof _options.spin == 'object') {
+					$(innerDiv)
+					.css({ position: "absolute", "background-image": "url(" + _options.spin.url + ")", "background-size": "100%", width: _options.spin.width, height: _options.spin.height })
+					.attr("id", "jqueryOverlayLoad"+easyOverlayIndex);
+				} else if (_options.spin) {
 					$(innerDiv)
 					.css({ position: "absolute" })
-					.attr("id", "jqueryOverlayLoad")
+					.attr("id", "jqueryOverlayLoad"+easyOverlayIndex)
 					.html("<i class='fa fa-spin fa-spinner fa-2x'></i>&nbsp;");
 				} else {
 					$(innerDiv)
 					.css({ position: "absolute" })
-					.attr("id", "jqueryOverlayLoad");
+					.attr("id", "jqueryOverlayLoad"+easyOverlayIndex);
 				}
 				
 				
@@ -63,7 +69,7 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 						position: "absolute",
 						background: "#fff"
 					})
-					.attr('id',"jqueryEasyOverlayDiv")
+					.attr('id',"jqueryEasyOverlayDiv"+easyOverlayIndex)
 					.append(innerDiv);
 				
 				$("body").append(containerDiv);
@@ -73,15 +79,17 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 			var topOverlay = ((target.height()/2)-12);
 			var leftOverlay = ((target.width()/2)-12);
 			if(topOverlay < 0) topOverlay = 0;
-			$("#jqueryOverlayLoad").css({
+			$("#jqueryOverlayLoad"+easyOverlayIndex).css({
 				top  : topOverlay,
 				left : leftOverlay
 			});
+			target.data('easyOverlayIndex', easyOverlayIndex);
 		}
 		
 		function start(target) {
-			// Restoring some CSS of OVERLAY DIV after every 'overlayout' because jquery.fadeOut method take off it
-			$("#jqueryEasyOverlayDiv").css({
+			var easyOverlayIndex = $.fn.easyOverlay.indexCounter;
+			// Restoring some CSS of OVERLAY DIV after every 'stop' because jquery.fadeOut method take off it
+			$("#jqueryEasyOverlayDiv"+easyOverlayIndex).css({
 				opacity : 0.5,
 				zIndex  : overlayZIndex,
 				top     : target.offset().top,
@@ -91,12 +99,13 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 			});
 			
 			// Show OVERLAY DIV
-			$("#jqueryEasyOverlayDiv").fadeIn(_options.speed);
+			$("#jqueryEasyOverlayDiv"+easyOverlayIndex).fadeIn(_options.delay);
 		}
 
 		function stop(target) {
-			if( $("#jqueryEasyOverlayDiv").length ) {
-				$("#jqueryEasyOverlayDiv").fadeOut(_options.speed).remove();
+			var easyOverlayIndex = target.data('easyOverlayIndex');
+			if( $("#jqueryEasyOverlayDiv"+easyOverlayIndex).length ) {
+				$("#jqueryEasyOverlayDiv"+easyOverlayIndex).fadeOut(_options.delay, function(){this.remove()});
 			}
 		}
 
@@ -121,4 +130,5 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 		return this;
 			
 	}
+	$.fn.easyOverlay.indexCounter = 0;
 })(jQuery);

@@ -41,9 +41,12 @@ To customize some aspects of the plugin behaviour, you can pass an object as a s
 ```javascript
 $("#elementDesired").easyOverlay("start", {
 	zindex: 60000, //The default z-index of the overlay is 99999
-	spin: false,   //Do not show a spinning icon on the overlay
-	speed: 200     //Time in miliseconds for the fadeIn or fadeOut effects of the overlay.
+	spin:
+		true // Show the fontawesome loading spinner, it's the default behaviour
+		false // No spinner will be shown
+		{ url: 'image-web-url', width: 'image-width', height: 'image-height' } // A custom spinner, with an image from a url; sizes can be specified with units or percentages
+	delay: 200     //Time in miliseconds for the fadeIn or fadeOut effects of the overlay.
 });
 ```
 
-**Note**: When using the `stop` option, actually only the `speed` parameter will be relevant.
+**Note**: When using the `stop` option, actually only the `delay` parameter will be relevant.

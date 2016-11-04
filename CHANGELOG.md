@@ -8,3 +8,12 @@
 * 1 option 'action' with values:
   * 'start'
   * 'stop'
+
+## 2.1.0 (Oct 26, 2016)
+* Options introducted, to extend the plugin behaviour
+
+## 2.2.0 (Oct 26, 2016)
+* The overlay now works also on multiple DOM elements
+
+## 2.3.0 (Nov 3, 2016)
+* Is possible specify a custom image as spinner, along with its dimensions (with units or percentages)

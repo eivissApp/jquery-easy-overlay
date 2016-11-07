@@ -36,7 +36,7 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 			if(target.length <= 0) return;
 			
 			// Calculating OVERLAY DIV z-index
-			var overlayZIndex;
+			overlayZIndex;
 			var targetZIndex = target.css('z-index');
 			if (targetZIndex == "auto")
 				overlayZIndex = _options.zindex;

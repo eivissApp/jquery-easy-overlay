@@ -17,3 +17,6 @@
 
 ## 2.3.0 (Nov 3, 2016)
 * Is possible specify a custom image as spinner, along with its dimensions (with units or percentages)
+
+  ### 2.3.1 (Nov 7, 2016)
+  * ZIndex on the container was not set, bug fixed

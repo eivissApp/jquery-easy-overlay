@@ -27,7 +27,7 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
             delay: 400,
         };
 
-        var _options = $.extend({}, defaults, options || {});
+        var _options = $.extend(true, defaults, $.fn.easyOverlay.options || {}, options || {});
 		var overlayZIndex;
 		$.fn.easyOverlay.indexCounter++;
 		

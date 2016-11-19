@@ -36,7 +36,16 @@ That's all!
 Options
 ---------
 
-To customize some aspects of the plugin behaviour, you can pass an object as a second parameter.
+To customize some aspects of the plugin behaviour, you can use options. Defaults are:
+```
+{
+	zindex: "99999",
+	spin: true,
+	delay: 400
+}
+```
+
+You can pass an object as a second parameter.
 
 ```javascript
 $("#elementDesired").easyOverlay("start", {
@@ -48,5 +57,12 @@ $("#elementDesired").easyOverlay("start", {
 	delay: 200     //Time in miliseconds for the fadeIn or fadeOut effects of the overlay.
 });
 ```
+And set your default values, for all calls of easyOverlay, without passing arguments:
+```javascript
+jQuery.fn.easyOverlay.options = { /* Here your options */ };
+```
 
-**Note**: When using the `stop` option, actually only the `delay` parameter will be relevant.
+**Note**:
+  * When using the `stop` option, actually only the `delay` parameter will be relevant;
+  * Options passed as arguments will override those setted within jQuery.fn.easyOverlay.options property;
+

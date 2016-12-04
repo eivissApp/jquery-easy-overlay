@@ -84,19 +84,23 @@
 
 <p>You can pass an object as a second parameter</p>
 <div class="highlight highlight-javascript"><pre>
-$("#elementDesired").easyOverlay("start", {
-    zindex: 60000, //The default z-index of the overlay is 99999
+$("#elementDesired").easyOverlay("start", { /* Your options */ });
+</pre></div>
+
+<p>And/or set your default values, for all calls of easyOverlay, without passing arguments:</p>
+<div class="highlight highlight-javascript"><pre>
+jQuery.fn.easyOverlay.options = { /* Here your options */ };
+</pre></div>
+
+<p>Options explained:</p>
+<div class="highlight highlight-javascript"><pre>
+    zindex: 99999, //The default z-index of the overlay is 99999
     spin:
         true // Show the fontawesome loading spinner, it's the default behaviour
         false // No spinner will be shown
         { url: 'image-web-url', width: 'image-width', height: 'image-height' } // A custom spinner, with an image from a url; sizes can be specified with units or percentages
     delay: 200     //Time in miliseconds for the fadeIn or fadeOut effects of the overlay.
 });
-</pre></div>
-
-<p>And set your default values, for all calls of easyOverlay, without passing arguments:</p>
-<div class="highlight highlight-javascript"><pre>
-jQuery.fn.easyOverlay.options = { /* Here your options */ };
 </pre></div>
 
 <p>

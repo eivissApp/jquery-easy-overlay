@@ -45,18 +45,27 @@ To customize some aspects of the plugin behaviour, you can use options. Defaults
 }
 ```
 
-You can pass an object as a second parameter.
+You can pass an object as a second parameter
+```
+$("#elementDesired").easyOverlay("start", { /* Your options */ });
+```
 
-```javascript
-$("#elementDesired").easyOverlay("start", {
-	zindex: 60000, //The default z-index of the overlay is 99999
-	spin:
-		true // Show the fontawesome loading spinner, it's the default behaviour
-		false // No spinner will be shown
-		{ url: 'image-web-url', width: 'image-width', height: 'image-height' } // A custom spinner, with an image from a url; sizes can be specified with units or percentages
-	delay: 200     //Time in miliseconds for the fadeIn or fadeOut effects of the overlay.
+And/or set your default values, for all calls of easyOverlay, without passing arguments:
+```
+jQuery.fn.easyOverlay.options = { /* Here your options */ };
+```
+
+Options explained:
+```
+    zindex: 99999, //The default z-index of the overlay is 99999
+    spin:
+        true // Show the fontawesome loading spinner, it's the default behaviour
+        false // No spinner will be shown
+        { url: 'image-web-url', width: 'image-width', height: 'image-height' } // A custom spinner, with an image from a url; sizes can be specified with units or percentages
+    delay: 200     //Time in miliseconds for the fadeIn or fadeOut effects of the overlay.
 });
 ```
+
 And set your default values, for all calls of easyOverlay, without passing arguments:
 ```javascript
 jQuery.fn.easyOverlay.options = { /* Here your options */ };

@@ -59,20 +59,58 @@
 
 <p>And, for overlay an existing element</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#elementDesired"</span><span class="p">).</span><span class="nx">overlay</span><span class="p">();</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#elementDesired"</span><span class="p">).</span><span class="nx">easyOverlay</span><span class="p">("start");</span>
 </pre></div>
 
 <p>For remove the overlay layer</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">.</span><span class="nx">overlayout</span><span class="p">();</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#elementDesired"</span><span class="p">).</span><span class="nx">easyOverlay</span><span class="p">("stop");</span>
 </pre></div>
 
 <p>That's all!</p>
 
 <h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<p>To customize some aspects of the plugin behaviour, you can use options. Defaults are:</p>
+
+<div class="highlight highlight-javascript"><pre>
+{
+	zindex: "99999",
+	spin: true,
+	delay: 400
+}
+</pre></div>
+
+<p>You can pass an object as a second parameter</p>
+<div class="highlight highlight-javascript"><pre>
+$("#elementDesired").easyOverlay("start", {
+    zindex: 60000, //The default z-index of the overlay is 99999
+    spin:
+        true // Show the fontawesome loading spinner, it's the default behaviour
+        false // No spinner will be shown
+        { url: 'image-web-url', width: 'image-width', height: 'image-height' } // A custom spinner, with an image from a url; sizes can be specified with units or percentages
+    delay: 200     //Time in miliseconds for the fadeIn or fadeOut effects of the overlay.
+});
+</pre></div>
+
+<p>And set your default values, for all calls of easyOverlay, without passing arguments:</p>
+<div class="highlight highlight-javascript"><pre>
+jQuery.fn.easyOverlay.options = { /* Here your options */ };
+</pre></div>
+
+<p>
+	<strong>Note:</strong>
+	<ul>
+		<li>When using the stop option, actually only the delay parameter will be relevant;</li>
+		<li>Options passed as arguments will override those setted within jQuery.fn.easyOverlay.options property;</li>
+	</ul>
+</p>
+
+<h3>
 <a name="authors" class="anchor" href="#authors"><span class="octicon octicon-link"></span></a>Authors</h3>
 
-<p><a href="https://github.com/eleazan" class="user-mention">@eleazan</a></p>
+<p><a href="https://github.com/eleazan" class="user-mention">@eleazan</a>, <a href="https://github.com/nenomaz" class="user-mention">@nenomaz</a></p>
       </section>
 
     </div>

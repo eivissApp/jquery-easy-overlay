@@ -20,20 +20,23 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 */
 (function( $ ){
 	$.fn.easyOverlay = function(action, options) {
-		
+
 		var defaults = {
             zindex: "99999",
             spin: true,
             delay: 400,
         };
-
         var _options = $.extend(true, defaults, $.fn.easyOverlay.options || {}, options || {});
+
+		var STATE_VISIBLE = 1;
+		var STATE_HIDDEN = 0;
+		
 		var overlayZIndex;
 		$.fn.easyOverlay.indexCounter++;
 		
 		function init(target) {
 			var easyOverlayIndex = $.fn.easyOverlay.indexCounter;
-			if(target.length <= 0) return;
+			if(target.length <= 0 || target.data('easyOverlayState') == STATE_VISIBLE) return;
 			
 			// Calculating OVERLAY DIV z-index
 			overlayZIndex;
@@ -102,6 +105,7 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 			
 			// Show OVERLAY DIV
 			$("#jqueryEasyOverlayDiv"+easyOverlayIndex).fadeIn(_options.delay);
+			target.data('easyOverlayState', STATE_VISIBLE);
 		}
 
 		function stop(target) {
@@ -109,6 +113,7 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 			if( $("#jqueryEasyOverlayDiv"+easyOverlayIndex).length ) {
 				$("#jqueryEasyOverlayDiv"+easyOverlayIndex).fadeOut(_options.delay, function(){this.remove()});
 			}
+			target.data('easyOverlayState', STATE_HIDDEN);
 		}
 
 		switch (action) {

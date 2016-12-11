@@ -76,12 +76,14 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 			}
 
 			// Calculating Spinner Div positioning
-			var topOverlay = ((target.height()/2)-12);
-			var leftOverlay = ((target.width()/2)-12);
-			if(topOverlay < 0) topOverlay = 0;
+			var spinWidth = _options.spin.width.slice(0, _options.spin.width.length - 2);
+			var spinHeight = _options.spin.height.slice(0, _options.spin.height.length - 2);
+			var spinTop = ((target.height()/2)-(spinWidth / 2));
+			var spinLeft = ((target.width()/2)-(spinHeight / 2));
+			if(spinTop < 0) spinTop = 0;
 			$("#jqueryOverlayLoad"+easyOverlayIndex).css({
-				top  : topOverlay,
-				left : leftOverlay
+				top  : spinTop,
+				left : spinLeft
 			});
 			target.data('easyOverlayIndex', easyOverlayIndex);
 		}

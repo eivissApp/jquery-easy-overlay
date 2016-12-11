@@ -21,6 +21,7 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 (function( $ ){
 	$.fn.easyOverlay = function(action, options) {
 
+		// Preparing options
 		var defaults = {
             zindex: "99999",
             spin: true,
@@ -28,18 +29,18 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
         };
         var _options = $.extend(true, defaults, $.fn.easyOverlay.options || {}, options || {});
 
+		// States constants
 		var STATE_VISIBLE = 1;
 		var STATE_HIDDEN = 0;
 		
-		var overlayZIndex;
-		$.fn.easyOverlay.indexCounter++;
-		
 		function init(target) {
-			var easyOverlayIndex = $.fn.easyOverlay.indexCounter;
 			if(target.length <= 0 || target.data('easyOverlayState') == STATE_VISIBLE) return;
+			target.data('easyOverlayInitiated', true);
+			$.fn.easyOverlay.indexCounter++;
+			var easyOverlayIndex = $.fn.easyOverlay.indexCounter;
 			
 			// Calculating OVERLAY DIV z-index
-			overlayZIndex;
+			var overlayZIndex;
 			var targetZIndex = target.css('z-index');
 			if (targetZIndex == "auto")
 				overlayZIndex = _options.zindex;
@@ -92,11 +93,10 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 		}
 		
 		function start(target) {
-			var easyOverlayIndex = $.fn.easyOverlay.indexCounter;
+			var easyOverlayIndex = target.data('easyOverlayIndex');
 			// Restoring some CSS of OVERLAY DIV after every 'stop' because jquery.fadeOut method take off it
 			$("#jqueryEasyOverlayDiv"+easyOverlayIndex).css({
 				opacity : 0.5,
-				zIndex  : overlayZIndex,
 				top     : target.offset().top,
 				left    : target.offset().left,
 				width   : target.outerWidth(),
@@ -111,7 +111,7 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 		function stop(target) {
 			var easyOverlayIndex = target.data('easyOverlayIndex');
 			if( $("#jqueryEasyOverlayDiv"+easyOverlayIndex).length ) {
-				$("#jqueryEasyOverlayDiv"+easyOverlayIndex).fadeOut(_options.delay, function(){this.remove()});
+				$("#jqueryEasyOverlayDiv"+easyOverlayIndex).fadeOut(_options.delay);
 			}
 			target.data('easyOverlayState', STATE_HIDDEN);
 		}
@@ -119,15 +119,17 @@ along with jQuery Easy Overlay.  If not, see <http://www.gnu.org/licenses/>.
 		switch (action) {
 			case 'start':
 				{
-					if(this.length > 0) {
-						init(this);
+					if(this.length == 1) {
+						if (typeof this.data('easyOverlayInitiated') == 'undefined') {
+							init(this);
+						}
 						start(this);
 					}
 				}
 				break;
 			case 'stop':
 				{
-					if (this.length > 0) {
+					if (this.length == 1) {
 						stop(this);
 					}
 				}

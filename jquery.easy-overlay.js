@@ -1,5 +1,5 @@
 /*
-JQuery Easy Overlay v2.0.0
+JQuery Easy Overlay v2.3.3
 
 Copyright 2015 Nazzareno Mazzitello, Andrés Cabrera and Contributors
 

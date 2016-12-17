@@ -23,3 +23,6 @@
 
   ### 2.3.2 (Nov 19, 2016)
   * Now, default parameters can be set within jQuery.fn.easyOverlay.options
+
+  ### 2.3.3 (Dec 17, 2016)
+  * Perfect centering of the spinner container
